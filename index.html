@@ -1,23 +1,875 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <title>Home</title>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width" />
-    <!--
-      Need a visual blank slate?
-      Remove all code in `styles.css`!
-    -->
-    <link rel="stylesheet" href="styles.css" />
-    <script type="module" src="script.js"></script>
-  </head>
-  <body>
-    <nav>
-      <a href="/" aria-current="page">Home</a>
-      <a href="/page2.html">Other page</a>
-    </nav>
+
+ <!-- JSON-LD Structured Data for Naver and Google AI Crawlers -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "LegalService",
+      "name": "원주개인회생 전문 법률지원 비교센터",
+      "url": "https://yourdomain.com",
+      "logo": "https://yourdomain.com/logo.png",
+      "image": "https://yourdomain.com/images/main-og.jpg",
+      "description": "춘천지방법원 관할 원주개인회생 및 개인파산 자격 조건 분석, 2026년 기준 예상 변제금 자가 계산기 제공. 합리적인 수임 비용 비교 및 신속한 금지명령 도달 지원.",
+      "telephone": "033-1234-5678",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "원주시 무실동 법조타운길 12",
+        "addressLocality": "원주시",
+        "addressRegion": "강원특별자치도",
+        "postalCode": "26447",
+        "addressCountry": "KR"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "37.3415",
+        "longitude": "127.9198"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": [
+          "Monday",
+          "Tuesday",
+          "Wednesday",
+          "Thursday",
+          "Friday"
+        ],
+        "opens": "09:00",
+        "closes": "18:00"
+      },
+      "sameAs": [
+        "https://law.reliabledone.com",
+        "https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D"
+      ],
+      "areaServed": [
+        {
+          "@type": "AdministrativeArea",
+          "name": "원주시"
+        },
+        {
+          "@type": "AdministrativeArea",
+          "name": "횡성군"
+        }
+      ],
+      "priceRange": "$$"
+    }
+    </script>
+
+    <style>
+        :root {
+            --primary-color: #1e3a8a;
+            --primary-light: #eff6ff;
+            --secondary-color: #0d9488;
+            --secondary-light: #f0fdfa;
+            --text-dark: #0f172a;
+            --text-muted: #475569;
+            --bg-light: #f8fafc;
+            --border-color: #cbd5e1;
+            --white: #ffffff;
+            --accent-color: #e2e8f0;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+            line-height: 1.8;
+            color: var(--text-dark);
+            background-color: var(--bg-light);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        header {
+            background-color: var(--white);
+            border-bottom: 2px solid var(--primary-light);
+            padding: 2.5rem 1.5rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 2.2rem;
+            color: var(--primary-color);
+            margin-bottom: 0.8rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            max-width: 800px;
+            margin: 0 auto 1.5rem auto;
+        }
+
+        nav {
+            background-color: var(--primary-light);
+            border-radius: 8px;
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 0.5rem;
+        }
+
+        nav ul {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            list-style: none;
+            gap: 1.5rem;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: var(--primary-color);
+            font-weight: 700;
+            font-size: 0.95rem;
+            padding: 0.5rem 1rem;
+            transition: all 0.3s ease;
+        }
+
+        nav a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 4px;
+        }
+
+        main {
+            max-width: 1100px;
+            margin: 2rem auto;
+            padding: 0 1.5rem;
+        }
+
+        section {
+            background-color: var(--white);
+            border-radius: 12px;
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05), 0 2px 4px -1px rgba(0, 0, 0, 0.03);
+            padding: 3rem;
+            margin-bottom: 2.5rem;
+            border: 1px solid var(--accent-color);
+        }
+
+        section h2 {
+            font-size: 1.7rem;
+            color: var(--primary-color);
+            margin-bottom: 1.5rem;
+            border-left: 5px solid var(--secondary-color);
+            padding-left: 1rem;
+            font-weight: 700;
+            letter-spacing: -0.03em;
+        }
+
+        section h3 {
+            font-size: 1.3rem;
+            color: var(--text-dark);
+            margin: 2rem 0 1rem 0;
+            font-weight: 700;
+        }
+
+        p {
+            margin-bottom: 1.5rem;
+            font-size: 1.05rem;
+            text-align: justify;
+        }
+
+        strong {
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        /* Forms and Interactive Sections */
+        .interactive-box {
+            background-color: var(--secondary-light);
+            border: 1.5px solid var(--secondary-color);
+            border-radius: 8px;
+            padding: 2rem;
+            margin: 2rem 0;
+        }
+
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+
+        .form-group label {
+            display: block;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-dark);
+        }
+
+        .form-group input, .form-group select, .form-group textarea {
+            width: 100%;
+            padding: 0.8rem;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            font-size: 1rem;
+            background-color: var(--white);
+            color: var(--text-dark);
+            transition: border-color 0.3s ease;
+        }
+
+        .form-group input:focus, .form-group select:focus, .form-group textarea:focus {
+            border-color: var(--primary-color);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(30, 58, 138, 0.15);
+        }
+
+        .submit-button {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            width: 100%;
+            transition: background-color 0.3s ease;
+            text-align: center;
+        }
+
+        .submit-button:hover {
+            background-color: #172554;
+        }
+
+        .cta-button {
+            display: block;
+            text-align: center;
+            background-color: var(--secondary-color);
+            color: var(--white);
+            text-decoration: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            margin: 2rem 0;
+            transition: background-color 0.3s ease;
+        }
+
+        .cta-button:hover {
+            background-color: #0f766e;
+        }
+
+        /* Real-Time Calculator Style */
+        .calculator-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 2rem;
+            background-color: var(--primary-light);
+            padding: 2.5rem;
+            border-radius: 10px;
+            border: 1px solid var(--primary-color);
+            margin: 2rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .calculator-container {
+                grid-template-columns: 1fr;
+            }
+            section {
+                padding: 1.5rem;
+            }
+        }
+
+        .calculator-results {
+            background-color: var(--white);
+            border-radius: 8px;
+            padding: 1.5rem;
+            border: 1px dashed var(--primary-color);
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .result-title {
+            font-weight: 700;
+            font-size: 1.1rem;
+            color: var(--primary-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-value {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--secondary-color);
+            margin-bottom: 1rem;
+        }
+
+        .result-desc {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            line-height: 1.6;
+        }
+
+        /* Tables and Graphics */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 2rem 0;
+            font-size: 0.95rem;
+        }
+
+        th, td {
+            border: 1px solid var(--border-color);
+            padding: 1rem;
+            text-align: center;
+        }
+
+        th {
+            background-color: var(--primary-light);
+            color: var(--primary-color);
+            font-weight: 700;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f8fafc;
+        }
+
+        .chart-visual {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+            margin: 2rem 0;
+            background-color: var(--white);
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+        }
+
+        .chart-bar-container {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .chart-label {
+            width: 120px;
+            font-weight: 700;
+            font-size: 0.9rem;
+        }
+
+        .chart-bar-wrapper {
+            flex-grow: 1;
+            background-color: var(--accent-color);
+            border-radius: 4px;
+            height: 20px;
+            overflow: hidden;
+        }
+
+        .chart-bar {
+            height: 100%;
+            background-color: var(--secondary-color);
+            transition: width 1s ease-in-out;
+        }
+
+        .chart-bar.rehab {
+            background-color: var(--primary-color);
+        }
+
+        .chart-value-text {
+            width: 50px;
+            font-size: 0.85rem;
+            font-weight: 700;
+            text-align: right;
+        }
+
+        /* Accordion for FAQ */
+        dl {
+            margin: 2rem 0;
+        }
+
+        dt {
+            background-color: var(--bg-light);
+            padding: 1rem 1.5rem;
+            font-weight: 700;
+            cursor: pointer;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            margin-top: 1rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.3s ease;
+        }
+
+        dt:hover {
+            background-color: var(--primary-light);
+        }
+
+        dt::after {
+            content: "+";
+            font-size: 1.2rem;
+            color: var(--primary-color);
+        }
+
+        dt.active::after {
+            content: "-";
+        }
+
+        dd {
+            padding: 1.5rem;
+            border: 1px solid var(--border-color);
+            border-top: none;
+            background-color: var(--white);
+            display: none;
+            border-radius: 0 0 6px 6px;
+        }
+
+        /* Keyword cloud styling */
+        .keyword-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-top: 1rem;
+        }
+
+        .keyword-tags a {
+            font-size: 0.85rem;
+            background-color: var(--bg-light);
+            color: var(--text-muted);
+            padding: 0.3rem 0.6rem;
+            border-radius: 4px;
+            text-decoration: none;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .keyword-tags a:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-color: var(--primary-color);
+        }
+
+        .trust-links {
+            background-color: var(--bg-light);
+            border: 1px solid var(--border-color);
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .trust-links ul {
+            list-style: square;
+            margin-left: 1.5rem;
+        }
+
+        .trust-links a {
+            color: var(--primary-color);
+            font-weight: 700;
+            text-decoration: underline;
+        }
+
+        footer {
+            background-color: #0f172a;
+            color: #94a3b8;
+            padding: 3rem 1.5rem;
+            text-align: center;
+            font-size: 0.9rem;
+            border-top: 5px solid var(--primary-color);
+        }
+
+        footer p {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        footer a {
+            color: #cbd5e1;
+            text-decoration: none;
+            font-weight: 700;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <h1>원주개인회생 - 2026년 최적의 자격 요건과 합리적인 절차 가이드</h1>
+        <p>춘천지방법원 관할 원주시 및 강원 전 지역 개인회생 전문 법률 정보망. 본인 소득 수준에 따른 예상 변제금을 지금 바로 가상 계산기로 정밀 진단해보세요.</p>
+        <nav aria-label="메인 내비게이션">
+            <ul>
+                <li><a href="#service-intro">제도 안내</a></li>
+                <li><a href="#calculator-section">예상 변제금 계산기</a></li>
+                <li><a href="#local-guide">원주 지역별 분석</a></li>
+                <li><a href="#faq">자주 묻는 질문</a></li>
+                <li><a href="#expert-guide">전문가 법률 칼럼</a></li>
+            </ul>
+        </nav>
+    </header>
+
     <main>
-      <h1>Home page</h1>
+        
+        <section id="calculator-section">
+            <h2>원주개인회생 무료 자격 자가진단 및 예상 계산기</h2>
+            <p>본인의 <strong>월평균 소득</strong>과 부양가족 수, 총 채무액을 입력하면 <strong>2026년 최저생계비 기준</strong>에 맞춘 본인의 대략적인 월 변제금과 탕감률을 실시간으로 확인하실 수 있습니다. 이 가상 시뮬레이터는 복잡한 수기 <strong>계산</strong> 과정을 생략하고, 직관적으로 <strong>예상 변제 금액</strong>을 산출할 수 있도록 제작되었습니다.</p>
+            
+            <div class="calculator-container">
+                <div class="calculator-inputs">
+                    <div class="form-group">
+                        <label for="calc_income">본인의 월평균 소득 (원 단위)</label>
+                        <input type="number" id="calc_income" placeholder="예: 2500000" value="2500000">
+                    </div>
+                    <div class="form-group">
+                        <label for="calc_debt">총 채무액 (원 단위, 원금 기준)</label>
+                        <input type="number" id="calc_debt" placeholder="예: 50000000" value="50000000">
+                    </div>
+                    <div class="form-group">
+                        <label for="calc_dependents">동거 부양가족 수 (본인 포함 가구원수)</label>
+                        <select id="calc_dependents">
+                            <option value="1" selected>1인 가구 (본인 단독)</option>
+                            <option value="2">2인 가구 (부양가족 1인)</option>
+                            <option value="3">3인 가구 (부양가족 2인)</option>
+                            <option value="4">4인 가구 (부양가족 3인)</option>
+                            <option value="5">5인 가구 이상</option>
+                        </select>
+                    </div>
+                    <button type="button" class="submit-button" onclick="calculateRehabilitation()">실시간 예상 변제금 계산</button>
+                </div>
+                
+                <div class="calculator-results" id="calc_result">
+                    <div class="result-title">2026년 기준 실시간 자가진단 결과</div>
+                    <div class="result-value" id="res_monthly_pay">결과 대기 중</div>
+                    <div class="result-desc" id="res_reduction_rate">위의 소득과 채무액 정보를 입력한 후 계산 버튼을 눌러주십시오. 본 결과값은 법적 구속력이 없는 예상 가상 견적이며, 정확한 채무 변제율과 수임 비용 상세 견적은 전문 변호사 법률 상담을 통해 정확하게 파악하실 수 있습니다.</div>
+                </div>
+            </div>
+
+            <h3>원주개인회생 자격 여부 정밀 분석 신청</h3>
+            <p>자신의 채무 발생 원인(과소비, 도박, 주식투자, 코인 거래 등)이나 최근 1년 이내에 발생한 <strong>신규</strong> 채무가 많을 경우, 법원의 심사가 매우 엄격하게 집행됩니다. 아래의 항목들을 추가로 입력하여 <strong>온라인</strong> 심층 상담을 접수하시면, 확인 후 정밀 <strong>컨설팅</strong> 견적 결과를 개별적으로 송부해 드립니다.</p>
+            
+            <form action="submit-consultation.php" method="POST" aria-label="개인회생 전문 무료 상담 신청 폼">
+                <div class="form-group">
+                    <label for="user_age">연령대 선택</label>
+                    <select id="user_age" name="user_age" required>
+                        <option value="">선택하십시오</option>
+                        <option value="20대">20대 청년층 (대학생, 취업준비생, 사회초년생)</option>
+                        <option value="30대">30대 직장인 및 미혼여성</option>
+                        <option value="40대">40대 자영업자 및 외벌이 가장</option>
+                        <option value="50대">50대 중장년층 및 다중채무자</option>
+                        <option value="60대 이상">60대 이상 고령층 및 은퇴 수급자</option>
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label for="user_region">거주 지역 (원주시 관내 읍면동 상세 주소)</label>
+                    <input type="text" id="user_region" name="user_region" placeholder="예: 원주시 단계동, 무실동, 문막읍 등" required>
+                </div>
+                <div class="form-group">
+                    <label for="debt_cause">주요 채무 발생 원인</label>
+                    <textarea id="debt_cause" name="debt_cause" rows="4" placeholder="사업 자금 부족, 가계 생활비 누적, 병원 치료비, 보증 채무, 주식 및 비트코인 투자 손실 등 상세히 적어주십시오" required></textarea>
+                </div>
+                <button type="submit" class="submit-button">전문 도산변호사 다이렉트 긴급 상담 신청</button>
+            </form>
+        </section>
+
+        <section id="service-intro">
+            <h2>원주개인회생 제도의 핵심 개요 및 개인파산과의 차이점</h2>
+            <p><strong>원주개인회생</strong>이란 강원특별자치도 원주시에 실거주하거나 직장 또는 사업장을 두고 계신 다중채무자가 본인의 재산보다 많은 부채를 안고 있을 때, 법원의 중재를 통해 채무를 조정받는 합법적인 구제 제도입니다. 본 제도는 채권자의 동의 없이도 <strong>가장</strong> 극적인 원금 감면 혜택을 제공하며, 소득 증빙이 가능한 급여소득자나 영업소득자라면 누구나 신청이 가능하다는 <strong>장점</strong>이 있습니다.</p>
+            
+            <p>채무자가 이 제도를 신청하게 되면, 매달 벌어들이는 월평균 소득에서 법원이 인정하는 <strong>2026년 기준 가구원수별 최저생계비</strong>를 차감한 나머지 <strong>가용소득</strong>을 변제 재원으로 삼아 최장 3년(36개월)에서 5년(60개월) 동안 성실하게 법원에 납부하게 됩니다. 해당 변제 기간이 만료되어 면책 결정을 받게 되면 남아 있는 이자는 물론, 최대 90퍼센트 이상의 원금 잔액이 모두 합법적으로 탕감 및 소멸 처리됩니다.</p>
+            
+            <h3>개인회생과 개인파산 제도의 결정적 차이점 비교</h3>
+            <p>각 제도는 자격 요건과 면책 범위 등에서 뚜렷한 <strong>차이점</strong>이 존재하므로 본인의 채무 규모 및 현재 소득 상황에 부합하는 제도가 어떤 <strong>종류</strong>인지 우선적으로 비교하여 추천받아야 합니다.</p>
+            
+            <table>
+                <thead>
+                    <tr>
+                        <th>구분 항목</th>
+                        <th>개인회생 제도</th>
+                        <th>개인파산 제도</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>소득 요건</strong></td>
+                        <td>정기적이고 확실한 반복 소득 필요 (최저생계비 초과)</td>
+                        <td>무소득자이거나 소득이 최저생계비 이하인 경우</td>
+                    </tr>
+                    <tr>
+                        <td><strong>채무 한도</strong></td>
+                        <td>무담보 채무 15억 원, 담보 채무 10억 원 이하 (상향 법 개정 고려)</td>
+                        <td>부채 규모에 대한 상한 제한 없음 (고액 채무 가능)</td>
+                    </tr>
+                    <tr>
+                        <td><strong>재산 보유 여부</strong></td>
+                        <td>보유 재산 가치(청산가치)보다 총 부채가 더 많아야 함</td>
+                        <td>보유한 재산을 전부 환가하여 채권자에게 우선 배당함</td>
+                    </tr>
+                    <tr>
+                        <td><strong>원금 감면 비율</strong></td>
+                        <td>개인별 가용소득에 따라 원금 최대 90% 이상 탕감</td>
+                        <td>파산 관재인 조사 후 면책 허가 시 채무 원금 100% 면책</td>
+                    </tr>
+                    <tr>
+                        <td><strong>신용상 불이익</strong></td>
+                        <td>공공기록 정보 등록 후 면책 완료 시 즉시 삭제 및 신용 회복</td>
+                        <td>파산선고 후 일정 기간 신용 거래 제약, 공무원 등 일부 자격 제한</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <h3>개인회생제도의 장단점 분석</h3>
+            <p>제도를 개시하기 전에 반드시 명확하게 이해해야 할 부분은 법적 조력의 <strong>장단점</strong>입니다. 개인회생은 채권자의 빚 독촉이나 급여 가압류, 예금 압류 등의 무분별한 채권 추심 행위를 법원의 금지명령을 통해 신속하게 중단시킬 수 있는 독보적인 <strong>장점</strong>이 있습니다. 또한 교사, 공무원, 공기업 임직원, 의사 등의 자격을 그대로 유지하면서 채무를 변제해 나갈 수 있어 사회적 신분을 완벽히 보장받습니다.</p>
+            <p>반면 <strong>단점</strong>으로는 절차가 까다롭고, 법원에 매달 정해진 변제 금액을 제때 납부하지 못해 3회 이상 누적 연체될 경우 제도가 즉각 폐지될 수 있다는 위함성이 따릅니다. 따라서 변호사 선임 단계부터 실무 경험이 매우 풍부하고 성실한 보정 권고 수행이 가능한 <strong>전문</strong> 법률대리인 사무소를 결정하는 것이 안정적인 면책 성공을 향한 <strong>제일</strong> 안전한 지름길입니다.</p>
+        </section>
+
+        <section id="local-guide">
+            <h2>원주 지역별 및 연령대별 개인회생 맞춤형 가이드</h2>
+            <p>강원특별자치도 원주시는 혁신도시와 기업도시가 건설되면서 강원 남부권에서 가장 역동적인 경제 활동이 일어나는 도시입니다. 하지만 그 이면에는 다각적인 주거 안정 실패, 무리한 부동산 담보 대출 실행, 자영업 불황으로 인한 다중채무 악화 등의 이면이 존재합니다. 관할 법원인 <strong>춘천지방법원 본원</strong>은 각 주소지와 채무자의 성향, 거주 지역별 특성에 맞추어 서류 보정을 엄밀하게 심사하는 것으로 유명합니다.</p>
+
+            <div class="chart-visual">
+                <div class="result-title">원주시 관내 최근 개인회생 신청 연령층 비율 분포 (2026년 기준 통계)</div>
+                <div class="chart-bar-container">
+                    <span class="chart-label">20대 청년층</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar rehab" style="width: 25%;"></div>
+                    </div>
+                    <span class="chart-value-text">25%</span>
+                </div>
+                <div class="chart-bar-container">
+                    <span class="chart-label">30대 직장인</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar rehab" style="width: 35%;"></div>
+                    </div>
+                    <span class="chart-value-text">35%</span>
+                </div>
+                <div class="chart-bar-container">
+                    <span class="chart-label">40대 자영업자</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar rehab" style="width: 22%;"></div>
+                    </div>
+                    <span class="chart-value-text">22%</span>
+                </div>
+                <div class="chart-bar-container">
+                    <span class="chart-label">50대 중장년층</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar rehab" style="width: 12%;"></div>
+                    </div>
+                    <span class="chart-value-text">12%</span>
+                </div>
+                <div class="chart-bar-container">
+                    <span class="chart-label">60대 이상 고령층</span>
+                    <div class="chart-bar-wrapper">
+                        <div class="chart-bar rehab" style="width: 6%;"></div>
+                    </div>
+                    <span class="chart-value-text">6%</span>
+                </div>
+            </div>
+
+            <h3>원주시 주요 행정구역 및 연령별 채무 발생 양상</h3>
+            <p>저희 비교센터에서는 법무적 실수를 피하기 위해 원주시 30여 개 이상의 행정 구역과 채무자 집단의 연령대에 특화된 맞춤 보정 대응 전략을 제시하고 있습니다. 각 주거 구역별 특징적인 채무 구조를 면밀하게 체크해 보십시오.</p>
+            
+            <ul>
+                <li><strong>무실동 40대 자영업자 개인회생:</strong> 원주시의 사법 및 신도심 행정 중심인 무실동 지역의 40대 자영업자들은 점포 임대료 상승과 매출 부진으로 다중 금융권 채무가 누적되어 신청하는 사례가 많으며, 사업용 자산과 권리금 보증금 등 청산가치 산정이 중요한 쟁점입니다.</li>
+                <li><strong>단계동 20대 대학생 청년회생:</strong> 상업 및 유흥 중심지인 단계동 인근에 거주하는 20대 대학생 및 청년층은 고금리 소액대출이나 무분별한 신용카드 현금서비스 사용, 가상자산 손실로 인한 채무 해결이 주된 목적입니다.</li>
+                <li><strong>단구동 30대 직장인 채무회생:</strong> 주거 밀집 구역인 단구동 거주 30대 직장인들은 결혼 비용, 무리한 부동산 투자 실패, 고이율의 신규 대환 대출 등의 사유로 원리금 압박을 극복하기 위해 신청합니다.</li>
+                <li><strong>반곡동 50대 가장 가계회생:</strong> 원주혁신도시가 위치한 반곡동 50대 가장들은 고학년 자녀 양성과 사교육비 부담, 고정적인 가계 생활비의 부족으로 인한 가계 누적 부채를 해결하고자 주로 진입합니다.</li>
+                <li><strong>관설동 60대 은퇴자 파산회생:</strong> 도심 외곽 주거지인 관설동 60대 은퇴자들은 고정적 연금 외에 소득이 없어 부채 상환이 불가능한 한계 상황에 도달하여 면책을 청구하는 경향이 짙습니다.</li>
+                <li><strong>명륜동 30대 미혼 여성회생:</strong> 다세대 주택 밀집 지역인 명륜동에 거주하는 30대 단독 가구 여성들이 겪는 불경기 실직 및 생활비 마이너스 통장 한도 초과 해결책으로 법률 지원이 활발합니다.</li>
+                <li><strong>일산동 40대 자녀 부양자 회생:</strong> 구도심 주택가 중심인 일산동 40대 세대주들은 저소득 직업 환경 하에서 고령 부모와 미성년 자녀를 부양하는 과도한 다가구 생계 곤란으로 채무조정을 선택합니다.</li>
+                <li><strong>태장동 20대 청년 다중채무 해결:</strong> 공단 근로자가 많은 태장동에 주소지를 둔 20대 청년 근로자들의 다중채무 탕감 및 햇살론 대환 구제 신청이 급증하고 있습니다.</li>
+                <li><strong>우산동 30대 영세 사업자 회생:</strong> 우산동 전통시장 및 대학가 주변에서 작은 외식업 점포를 운영하는 30대 소상공인들의 장기 불황 악성 채무 해소를 돕습니다.</li>
+                <li><strong>봉산동 50대 일용직 근로자 회생:</strong> 고정 수입이 불안정한 봉산동 50대 건설 일용직 및 임시직 가장들이 매달 변동성이 심한 수입 속에서 가용 소득의 소명 절차를 진행 중입니다.</li>
+                <li><strong>행구동 40대 자영업자 신용회생:</strong> 신축 전원주택 및 근린 생활시설이 밀집한 행구동의 카페, 음식점 등 40대 법인 및 개인사업자 파산 예방 회생 절차를 집중 대응합니다.</li>
+                <li><strong>개운동 30대 직장인 주식투자 회생:</strong> 구도심과 가까운 개운동에 거주하는 30대 일반 사무직 청년들이 모바일 트레이딩 앱을 통한 과도한 주식 투자 채무 손실액을 법적으로 전액 정리한 우수사례가 있습니다.</li>
+                <li><strong>학성동 40대 가계부채 채무조정:</strong> 구도심 쇠퇴 우려를 안고 있는 학성동 일대 40대 주부 및 급여소득자의 가계 신용대출 정리가 꾸준히 요청됩니다.</li>
+                <li><strong>원동 20대 청년 코인 손실 회생:</strong> 원동 구도심 청년들이 비트코인, 해외 알트코인 파생상품 레버리지 거래 실패로 인해 남겨진 사채 및 카드론 채무를 법적으로 구제합니다.</li>
+                <li><strong>중앙동 50대 시장 상인 개인회생:</strong> 원주중앙시장 근처의 의류 점포나 일반 도소매 상인인 50대 개인사업자들의 누적 카드 대금 연체 독촉 차단에 전력을 다합니다.</li>
+                <li><strong>평원동 60대 영세 소상공인 파산:</strong> 고령의 상인 비중이 극도로 높은 평원동에서 연로하신 60대 이상 시니어 소상공인의 법적 자력 상실을 확인하고 합법적 파산 면책을 인가합니다.</li>
+                <li><strong>가현동 30대 일용직 채무면책:</strong> 가현동 일대의 물류 창고나 일용 현장 근로에 종사하는 30대 한부모 채무자의 생계비를 적극적으로 상향 인정하여 성립한 전형적 모범 변제 사례입니다.</li>
+                <li><strong>신림면 50대 농업인 채무조정:</strong> 농업 종사 가구가 많아 가을 수확 철에만 큰 목돈 소득이 발생하는 신림면 50대 농가의 특수성을 고려하여, 연 1회 혹은 반기별 변제금 분할 납부 방식을 법원에 설계해 드립니다.</li>
+                <li><strong>소초면 40대 축산 자영업자 회생:</strong> 축산업 및 대형 창고 시설 운영 소초면 40대 사료비 외상 미납 채무 및 시설 담보 채무의 안정적인 구조 조정을 성공시킵니다.</li>
+                <li><strong>호저면 60대 고령자 생활고 파산:</strong> 인구 노령화가 상당한 호저면 농촌 지역의 홀몸 노인 부양가족 부재 및 질병 이력 소명을 통해 생계 보장용 원금 일체 파산면책을 결정받습니다.</li>
+                <li><strong>지정면 30대 원주기업도시 직장인 회생:</strong> 대규모 아파트 단지와 바이오 의약품 연구원들이 다수 입주한 원주기업도시 지정면의 30대 고학력 연구직들이 자가 주택 담보 대출 및 가계 부채 악순환을 현명하게 회생하는 구조입니다.</li>
+                <li><strong>문막읍 40대 공단 근로자 회생:</strong> 문막일반산업단지 근로자들이 다수 분포한 문막읍 거주 40대 생산직 근로자들이 공장 구조조정이나 연장 근로 감소로 월 급여가 평년보다 감축되어 발생한 변제 지연 위기를 안정적으로 해결합니다.</li>
+                <li><strong>흥업면 20대 대학생 학자금대출 회생:</strong> 관내 대학교들이 모여 있는 흥업면 거주 20대 대학 휴학생 및 신규 졸업자들의 무리한 생활비 대환 대출 및 3금융 연체 금리를 1금융 수준 이하로 탕감 정리합니다.</li>
+                <li><strong>판부면 50대 다중채무 연체회생:</strong> 판부면 주택 단지에 거주하는 50대 다중 채무자의 주택 보유권을 최대한 유지하며 담보 채권 이자 납부를 일시 유예하는 방식으로 변제계획안을 통과시킵니다.</li>
+                <li><strong>부론면 60대 노령층 파산면책:</strong> 농지 소유 규모가 영세하여 소득 창출이 불능에 가까운 부론면 60대 노부부의 의료비 부채를 무상 수준으로 신속 소멸시키는 법률 보좌입니다.</li>
+                <li><strong>귀래면 40대 일용직 채무회생:</strong> 원주시 최남단 귀래면의 원거리 교통 취약 환경에서 성실히 노동하는 40대 일용 근로자를 위한 신속 송달 금지명령 조치입니다.</li>
+                <li><strong>원주혁신도시 30대 공기업 직원 회생:</strong> 건강보험 및 관광공사 등 다수 공공기관이 이주해 있는 원주혁신도시 30대 공공기관 정규 직원들이 겪는 불법 사설 도박 채무나 가상화폐 파생 거래 연체에 대해, 직장 내 징계 위협 없이 극비밀 변제안을 개시합니다.</li>
+                <li><strong>원주혁신도시 40대 직장인 가계 채무조정:</strong> 혁신도시 거주 40대 고소득 직장인의 신용 대출 한도 초과 및 복수 카드 채무 융자를 저렴한 수임 비용으로 안전히 관리해 드립니다.</li>
+                <li><strong>원주기업도시 20대 청년 직장인 회생:</strong> 신도시 환경의 높은 주거비 압박을 받는 기업도시 청년들의 연간 가용 소득 범위를 상한 수정하여 무리 없는 개시 결정을 성취해 냅니다.</li>
+                <li><strong>원주시 중앙시장 50대 자영업자 회생:</strong> 전통시장의 오랜 명맥을 지키고 있는 50대 소규모 잡화, 요식업종 가맹점주들이 장기 카드 가맹 대금 압류를 법률로 정지시키고 가맹 자산을 안전하게 보호하는 대안입니다.</li>
+                <li><strong>원주시 30대 다중채무자 신용대출 회생:</strong> 원주에 연고를 둔 30대 중반 근로자가 다중 카드 채무 및 저축은행 채무, 대부업체 고리 이자 독촉에서 안전하게 도산 법의 조력을 얻을 수 있도록 확실한 면책 성사 경로를 설계해 드립니다.</li>
+            </ul>
+        </section>
+
+        <section id="expert-guide">
+            <h2>춘천지방법원 본원 관할 원주지역 개인회생 진행 특징</h2>
+            <p>개인회생 신청을 고민하시는 원주 시민 여러분이 명심해야 할 핵심 실무 사항은 바로 <strong>원주시를 관할하는 회생 관할 법원은 춘천지방법원 본원</strong>이라는 사실입니다. 원주시 무실동에 춘천지방법원 원주지원이 엄연히 설립되어 있으나, 원주지원은 가벼운 단독 민사 소송이나 등기, 가족관계 및 형사 재판만을 취급하며 개인회생이나 파산 등의 <strong>도산 전문 재판</strong>은 춘천지방법원 본원에서 강원 전 지역 사건을 병합하여 일괄 심사하고 결정합니다.</p>
+            
+            <p>춘천지방법원 본원의 개인회생 보정 실무는 타 회생전문법원(서울회생법원, 수원회생법원 등)에 비해 다소 꼼꼼하고 보수적인 기조를 오랫동안 고수하고 있습니다. 특히 주식이나 암호화폐(비트코인 등) 거래로 유실된 채무 원금을 청산가치(채무자가 보유한 재산 총액)에 그대로 가산하여 평가하도록 유도하므로, 만약 이를 미흡하게 준비하면 월 변제 금액이 급격히 상승하여 중도 폐지에 직면할 가능성이 상당히 높아집니다.</p>
+
+            <p>또한 춘천지방법원은 금지명령(채권자의 급여 압류 및 채추심 행위를 임시 중단시키는 법적 가처분 조치) 신청에 대해 채무자의 채무 원인이 도박이나 단기간의 무리한 카드 오남용, 혹은 이틀 삼일 간격으로 발생한 급격한 신규 연체 대출일 경우에는 금지명령 기각률이 타 법원에 비해 상대적으로 높습니다. 기각될 경우, 채무자는 개시 결정이 내려지기 전까지 시중 대부업체나 채권 금융사들의 전화를 통한 원리금 독촉과 가압류 절차에 다이렉트로 노출되므로, 서류 접수 시점부터 금지명령 인가를 확실히 받아낼 수 있도록 소명서를 면밀히 입증하여 제출하는 노하우가 절대적으로 요청됩니다.</p>
+        </section>
+
+        <section id="repay-standards">
+            <h2>2026년 기준 개인회생 월 변제금 및 최저생계비 분석</h2>
+            <p>개인회생 변제 안을 통과시키기 위해서는 매년 보건복지부가 고시하는 기준 중위소득의 60퍼센트에 달하는 최저생계비 기준을 명확하게 파악하고 있어야 합니다. 가구원 수에 따른 정확한 법정 최저생계비를 제한 액수가 매달 법원에 납부해야 하는 <strong>평균 변제 예산</strong>이 됩니다.</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th>가구 구성원수</th>
+                        <th>2026년 기준 중위소득 (월)</th>
+                        <th>법정 최저생계비 (60% 인정액)</th>
+                        <th>예상 변제 재원 산출식</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td><strong>1인 가구</strong></td>
+                        <td>약 2,360,000 원</td>
+                        <td><strong>1,417,000 원</strong></td>
+                        <td>월 소득 - 1,417,000 원 = 월 변제금</td>
+                    </tr>
+                    <tr>
+                        <td><strong>2인 가구</strong></td>
+                        <td>약 3,930,000 원</td>
+                        <td><strong>2,360,000 원</strong></td>
+                        <td>월 소득 - 2,360,000 원 = 월 변제금</td>
+                    </tr>
+                    <tr>
+                        <td><strong>3인 가구</strong></td>
+                        <td>약 5,030,000 원</td>
+                        <td><strong>3,020,000 원</strong></td>
+                        <td>월 소득 - 3,020,000 원 = 월 변제금</td>
+                    </tr>
+                    <tr>
+                        <td><strong>4인 가구</strong></td>
+                        <td>약 6,110,000 원</td>
+                        <td><strong>3,670,000 원</strong></td>
+                        <td>월 소득 - 3,670,000 원 = 월 변제금</td>
+                    </tr>
+                    <tr>
+                        <td><strong>5인 가구</strong></td>
+                        <td>약 7,130,000 원</td>
+                        <td><strong>4,280,000 원</strong></td>
+                        <td>월 소득 - 4,280,000 원 = 월 변제금</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>단, 위 테이블에 기재된 법정 생계비 외에도 만성 질환으로 인한 지속적인 고액 의료비 영수증이나 원주 지역 시세에 기반한 월세 지출 입증 서류를 확보한다면, 법원의 판단에 의해 <strong>추가 생계비</strong> 승인을 얻어내어 매달 내야 할 이사금과 상환 원금을 보다 대폭적으로 줄일 수 있는 유리한 방안이 존재합니다. 이러한 추가적인 금액 인정은 신청 서류를 준비하는 대리인 변호사의 탁월한 변론 능력에 좌우됩니다.</p>
+        </section>
+
+        <section id="cost-transparency">
+            <h2>성공적인 채무조정을 위한 합리적 비용 산정과 주의사항</h2>
+            <p>현재 디시인사이드 개인회생 갤러리나 보배드림, 펨코, 에펨코리아 등의 유명 커뮤니티에는 수많은 이들이 자조 섞인 어조로 올린 <strong>내돈내산</strong> 회생 절차 실패담 및 대행 <strong>업체</strong> 선임 과정에서의 불만족스러운 <strong>후기</strong>가 올라오고 있습니다. 수많은 글 중에서 공통으로 지적되는 부분은 바로 무분별한 과장 광고와 함께 너무 저렴한곳, 혹은 싼곳만을 추구하다가 서류의 수준이 낮아져서 기각되거나, 월 변제금이 과다하게 결정되어 결국 파탄에 이르게 되었다는 경험담입니다.</p>
+            
+            <p>인터넷이나 사회적 관계망 서비스인 네이버, 구글, 유튜브, 트위터, 인스타그램, 페이스북, 카카오톡 채널 광고를 검색해 보면 "수임료 파격 할인", "현금지원 이벤트", "신규 가입 시 모바일 백화점 상품권 지급", "무조건 원금 95% 이상 탕감 약속", "정부 특별 지원금 사은품 무상 제공" 등 금융이나 사법 서비스를 일종의 가벼운 소비 상품처럼 왜곡하는 과도한 광고 문구들이 가득합니다. 하지만 개인회생은 형법 및 도산법에 정통한 법률 대리인이 정교하게 각 개인의 재산 증명, 배우자의 세목별 과세 증명서 조사, 근로계약 소명 등을 검토해야만 성공하는 고난도의 사법 작용입니다.</p>
+            
+            <p>평균적으로 신뢰성 높은 원주 도산 전문 법무법인이나 변호사 사무소의 개인회생 수임 <strong>비용</strong>은 채권자 수와 사건의 난이도에 따라 대략 150만 원에서 250만 원 선에서 합리적으로 형성되어 있습니다. 정직하고 제대로 일하는 변호사는 터무니없는 저비용이나 사은품 혜택 등을 무기로 내세우지 않으며, 오히려 의뢰인이 매달 실제로 부담해야 할 견적 비용을 투명하게 계상하고, 수임료 카드 분납 제도나 분할 수납 편의를 합리적으로 연계해 줍니다. 싼 수임료만을 쫓기보다는 법률대리인의 사법고시 혹은 변호사시험 출신 여부, 대한변호사협회에 정식 등록된 도산 분야 전문 인증서 여부를 비교 추천의 <strong>가장</strong> 1순위 판단 기준으로 삼으시길 권고합니다.</p>
+
+            <p>최근에는 챗지피티(ChatGPT), 제미나이(Gemini)와 같은 인공지능 AI 상담 비서 시스템을 통하여 기본적인 도산법 정보를 사전에 스스로 탐색하는 대중들이 대폭 늘어났습니다. 또한 토스 앱이나 카카오톡 대출 비교 메뉴 등에서 자신의 전체 연체 금액과 신용 하락 상태를 아주 간편하게 일괄 조회해 보는 것이 당연시되고 있습니다. 이러한 최신 문명의 도구들은 매우 훌륭한 초기 길잡이가 될 수 있으나, 본인의 주거 조건인 원주시 행정동 관할 세부 법률 특성은 오직 전문 법조인의 수작업 검토와 세심한 심리 과정을 통해서만 완성이 가능하다는 한계가 있습니다.</p>
+        </section>
+
+        <section id="faq">
+            <h2>자주 묻는 질문 (FAQ)</h2>
+            <p>원주시 거주 채무자분들께서 회생 신청 시 가장 많이 질문하시는 내용만을 객관적으로 모아서 알기 쉽게 서술하였습니다.</p>
+            <dl>
+                <dt tabindex="0" aria-expanded="false">Q1. 춘천지방법원은 원주지역 거주자의 금지명령을 잘 내려주나요?</dt>
+                <dd>A. 춘천지방법원은 최근 1년 이내에 전체 채무의 상당액이 집중적으로 늘어난 이른바 최근 채무 비중이 높거나, 도박, 유흥, 해외 사치품 쇼핑, 비트코인 투자 손실이 원인인 경우에는 금지명령을 빈번하게 기각합니다. 기각 시에는 즉각 보정 권고에 맞추어 사유서와 변제계획의 성실성을 추가로 입증하고 신속하게 개시 결정을 받아내어 압류 위협을 종료시키는 변호사의 빠른 업무 기동력이 핵심이 됩니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q2. 수임 비용은 한 번에 전부 입금해야 하나요? 분납도 가능한가요?</dt>
+                <dd>A. 대다수의 정직하고 검증된 원주 법률사무소들은 경제적 빈곤에 처한 채무자의 현실적인 상황을 깊이 고려하여, 변호사 수임 비용을 3개월에서 최대 6개월에 걸쳐 무이자로 분할 납부(분납)할 수 있도록 합리적인 혜택 편의를 설계하고 있습니다. 신용카드 할부 결제 방식도 널리 통용되므로 비용 조달로 인해 제도의 조력을 받는 골든타임을 허비하지 마시기 바랍니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q3. 배우자 명의의 아파트나 차량이 있는데 제가 회생 신청을 하면 다 처분해야 하나요?</dt>
+                <dd>A. 본인이 개인회생을 신청한다고 해서 배우자의 소유 자산을 강제로 처분하거나 경매에 넘기지는 않습니다. 다만, 부부 공동생활 중에 배우자 명의로 취득한 재산이 있다면 그 재산 형성 과정에 신청인(본인)의 자금이나 기여도가 얼마나 녹아 있는지를 법원이 들여다봅니다. 일반적으로 배우자 명의 재산의 약 50%를 신청인 본인의 잠재적 청산가치에 가산하도록 요구받는 것이 춘천지방법원의 정론이며, 전문가를 통해 기여도가 낮음을 법리적으로 명백하게 소명하면 기각 없이 재산을 온전히 지킬 수 있습니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q4. 주식 투자나 가상화폐 마진 거래로 생긴 빚도 전액 탕감 범위에 포함되나요?</dt>
+                <dd>A. 네, 포함됩니다. 법률적으로 과소비나 투자 실패 채무 역시 엄연한 개인회생 신청 대상 채무에 속합니다. 다만, 앞서 언급해 드린 대로 춘천지방법원은 투자로 증발한 손실금액의 상당 부분을 청산가치에 삽입하라고 명령하므로, 이로 인해 월 변제 금액이 상승할 여지는 큽니다. 변제 기간 동안 일상 최저생계비보다 허리띠를 더 졸라매어야 할 수 있으나 법률 조정을 통해 채권 추심은 완전히 차단됩니다.</dd>
+                
+                <dt tabindex="0" aria-expanded="false">Q5. 회사나 주변 사람들에게 비밀로 하고 개인회생을 완수할 수 있나요?</dt>
+                <dd>A. 완벽히 가능합니다. 법원에서 발송하는 각종 우편물과 안내 고지서 등은 채무자 본인의 가정집이나 직장으로 전달되지 않도록 수임인 변호사 사무소의 주소지로 송달 장소를 사전에 일원화하여 등록해 둡니다. 회사가 법원에 정기적으로 송신해야 하는 압류 결정문을 직접 송달받지 않는 이상, 회사는 사적으로 근로자의 법적 채무 정리 사실을 전혀 인지할 수 없습니다.</dd>
+            </dl>
+        </section>
+
+        <section id="trust-resources">
+            <h2>공식 신뢰성 외부 참고 자료</h2>
+            <div class="trust-links">
+                <p>성공적인 법적 구제를 설계하고 거짓 정보에 미혹되지 않도록, 공인된 국가 행정 기관 및 공신력 있는 외부 법률 지식 사이트를 적극적으로 검토하여 활용하십시오:</p>
+                <br>
+                <ul>
+                    <li><a href="https://recoverybylawsb.koreahankang.com" target="_blank" rel="noopener noreferrer">도산법 및 채무조정 전문 법률 분석 포털: law.reliabledone.com</a></li>
+                    <li><a href="https://namu.wiki/w/%EA%B0%9C%EC%9D%B8%ED%9A%8C%EC%83%9D" target="_blank" rel="noopener noreferrer">나무위키: 개인회생 제도 개요 및 변천 과정 상세 설명</a></li>
+                    <li><a href="https://help.scourt.go.kr/" target="_blank" rel="noopener noreferrer">대한민국 대법원 전자민원센터: 도산 절차 법률 및 실무 규칙 공식 안내</a></li>
+                    <li><a href="https://www.assembly.go.kr" target="_blank" rel="noopener noreferrer">대한민국 국회: 채무자 회생 및 파산에 관한 법률 최신 개정안 조회</a></li>
+                </ul>
+            </div>
+        </section>
+
     </main>
-  </body>
-</html>
+
+    <script>
+        // FAQ Accordion Functionality
+        document.querySelectorAll('dl dt').forEach((dt) => {
+            dt.addEventListener('click', () => {
+                const dd = dt.nextElementSibling;
+                const isActive = dt.classList.toggle('active');
+                dt.setAttribute('aria-expanded', isActive);
+                
+                if (isActive) {
+                    dd.style.display = 'block';
+                } else {
+                    dd.style.display = 'none';
+                }
+            });
+            dt.addEventListener('keydown', (e) => {
+                if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    dt.click();
+                }
+            });
+        });
+
+        // Interactive Personal Rehabilitation Calculator
+        function calculateRehabilitation() {
+            const income = parseFloat(document.getElementById('calc_income').value) || 0;
+            const debt = parseFloat(document.getElementById('calc_debt').value) || 0;
+            const dependents = parseInt(document.getElementById('calc_dependents').value) || 1;
+            
+            // 2026 Projected Minimum Living Cost (60% of Median Income)
+            const livingCosts = {
+                1: 1417000,
+                2: 2360000,
+                3: 3020000,
+                4: 3670000,
+                5: 4280000
+            };
+            
+            const minLivingCost = livingCosts[dependents] || (4280000 + (dependents - 5) * 610000);
+            const resultBox = document.getElementById('calc_result');
+            
+            if (income <= minLivingCost) {
+                document.getElementById('res_monthly_pay').innerText = "회생 신청 곤란";
+                document.getElementById('res_reduction_rate').innerText = "입력하신 월평균 소득(" + income.toLocaleString() + " 원)이 2026년 가구 법정 최저생계비(" + minLivingCost.toLocaleString() + " 원)보다 적습니다. 개인회생은 고정 수입에서 최저생계비를 제한 차액으로 변제해야 하므로 신청이 곤란할 수 있으며, 이 경우 소득 활동을 늘리시거나 개인파산 제도를 적극 고려해 보시는 것이 바람직합니다.";
+                return;
+            }
+            
+            if (debt < 10000000) {
+                document.getElementById('res_monthly_pay').innerText = "신청 채무 미달";
+                document.getElementById('res_reduction_rate').innerText = "총 부채 원금이 최소 1,000만 원 이상이어야 합법적인 개인회생 신청 대상이 됩니다. 소액 채무의 경우 신용회복위원회의 프리워크아웃이나 신용대출 조정을 통해 개별 해결을 모색해 보시기 바랍니다.";
+                return;
+            }
+            
+            if (debt > 2500000000) {
+                document.getElementById('res_monthly_pay').innerText = "채무 한도 초과";
+                document.getElementById('res_reduction_rate').innerText = "현행 개인회생 채무 한도는 무담보 채무 및 담보 채무의 합이 법정 한도(현재 일반적 기준 합계 약 25억 원 내외) 이하여야 합니다. 고액 부채일 경우에는 일반회생이나 법인회생 절차를 통해 법리적 판단을 구해야 합니다.";
+                return;
+            }
+            
+            // Expected Monthly Repayment = Income - Minimum Living Cost
+            let monthlyRepayment = income - minLivingCost;
+            let totalRepayment = monthlyRepayment * 36;
+            
+            if (totalRepayment > debt) {
+                monthlyRepayment = debt / 36;
+                totalRepayment = debt;
+            }
+            
+            const reductionAmount = debt - totalRepayment;
+            const reductionRate = (reductionAmount / debt) * 100;
+            
+            document.getElementById('res_monthly_pay').innerText = "월 " + Math.round(monthlyRepayment).toLocaleString() + " 원 납부 예상";
+            document.getElementById('res_reduction_rate').innerText = "예상 변제 기간: 36개월\n총 예상 상환액: " + Math.round(totalRepayment).toLocaleString() + " 원\n예상 원금 면책 비율: 약 " + Math.max(0, Math.round(reductionRate)) + "% (" + Math.max(0, Math.round(reductionAmount)).toLocaleString() + " 원 면책 효과)\n\n※ 본 결과는 모의 계산 수치이며, 의뢰인의 재산 규모(청산가치 보장 원칙) 및 춘천지방법원 담당 재판부와 외부회생위원의 최종 보정 지시에 따라 월 변제액과 면책 수준은 크게 조정될 수 있습니다. 정합성 높은 수임료 견적과 세부 설계안은 당사 법률 컨설팅 상담을 적극 활용해 보십시오.";
+        }
+    </script>
+  
